@@ -1,0 +1,60 @@
+var path = require('path');
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ReloadPlugin = require('reload-html-webpack-plugin');
+
+
+module.exports = {
+  resolve: {
+    modules: [
+      path.join(__dirname, "./src"),
+      "./node_modules"
+    ]
+  },
+  entry: [
+    'react-hot-loader/patch',
+    "webpack-dev-server/client?http://localhost:3000/",
+    "webpack/hot/only-dev-server",
+    "./src/index.js"
+  ],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+      inject: true
+    }),
+    new ReloadPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ],
+  output: {
+    path: __dirname,
+    publicPath: '/employee',
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: ['babel-loader'],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          },
+        ]
+      }
+    ]
+  },
+  devtool: 'inline-source-map'
+};
