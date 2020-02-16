@@ -6,8 +6,8 @@ A react boilerplate For Assignment.
 ### Usage
 
 ```
-git clone https://github.com/Laxman2015/EmployeeMgmt-Crud-App.git
-cd EmployeeMgmt-Crud-App/
+git clone https://github.com/Laxman2015/AssignmentGIC
+cd AssignmentGIC/
 npm install
 npm start
 open http://localhost:3000/employee
